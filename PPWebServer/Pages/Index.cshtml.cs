@@ -14,8 +14,8 @@ namespace PPWebServer.Pages
 
         public void OnGet()
         {
-            HttpContext.Response.Headers.Add("Cross-Origin-Embedder-Policy", "require-corp");
-            HttpContext.Response.Headers.Add("Cross-Origin-Opener-Policy", "same-origin");
+           // HttpContext.Response.Headers.Add("Cross-Origin-Embedder-Policy", "require-corp");
+            //HttpContext.Response.Headers.Add("Cross-Origin-Opener-Policy", "same-origin");
         }
     }
 }

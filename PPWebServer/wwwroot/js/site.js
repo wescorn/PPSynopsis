@@ -68,6 +68,6 @@ function GetElapsedTime(startTime, decimals = 5) {
 	return elapsedTime.toFixed(decimals);
 }
 
-PrintPrimesParallel(0, 10000000);
+//PrintPrimesParallel(0, 10000000);
 
 // PrintPrimesSequential(0, 10000000)

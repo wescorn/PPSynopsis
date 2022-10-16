@@ -1,14 +1,16 @@
-﻿Loop();
+﻿onmessage = function (e) {
+    console.log('Worker: Message received from main script');
+    const message = e.data;
 
-function Loop() {
-    do {
-        Task();
-    }
-    while (true)
+    console.log('received', message);
+    postMessage("started working!");
+    Task();
+    
+    
 }
 
 function Task() {
-    setTimeout(function () {
-        self.postMessage("Working...")
+    setInterval(function () {
+        postMessage("Working...")
     }, 1000);
 }

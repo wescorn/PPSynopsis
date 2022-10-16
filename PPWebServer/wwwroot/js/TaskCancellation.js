@@ -1,31 +1,22 @@
-﻿const worker = new Worker(URL.createObjectURL(new Blob(["(" + Loop.toString() + ")()"], { type: 'text/javascript' })));
+﻿var m_worker = new Worker('js/TaskCancelWorker.js');
     //new Worker('TaskCancelWorker.js')
 
-if (window != self) {
-    worker.postMessage("Running Loop...")
-    Loop();
-}
+m_worker.postMessage("Running Loop...")
+
+m_worker.onmessage = function (event) {
+    console.log('worker returned data: ',event.data);
+};
 
 document.getElementById("cancelTaskBtn").addEventListener("click", function () {
-    worker.terminate()
+    m_worker.terminate()
+    console.log('terminated worker :)');
 });
 
-worker.onmessage = function (event) {
-    console.log("Data: " + event.data)
+m_worker.onerror = function (event) {
+    console.log('Error in main', event.message);
 };
 
-worker.onerror = function (event) {
-    console.log(event.message, event);
-};
 
-function Loop() {
-    do {
-        setTimeout(function () {
-            worker.postMessage("Working...")
-        }, 1000);
-    }
-    while (true)
-}
 /*
 function asyncThread(fn, ...args) {
     if (!window.Worker) {
